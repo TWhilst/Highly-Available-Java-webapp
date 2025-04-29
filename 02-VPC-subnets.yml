@@ -1,0 +1,10 @@
+---
+- name: Create a VPC Subnet
+  hosts: localhost
+  tasks:
+    - name: VPC Subnet with details
+      amazon.aws.ec2_vpc_subnet:
+        cidr: 10.0.1.0/24
+        region: us-west-2
+        az: us-west-2a
+        vpc_id: "{{ aws_vpc_info.vpc.id }}"
