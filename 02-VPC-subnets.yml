@@ -7,4 +7,4 @@
         cidr: 10.0.1.0/24
         region: us-west-2
         az: us-west-2a
-        vpc_id: "{{ aws_vpc_info.vpc.id }}"
+        vpc_id: "{{ vpc_info.vpc.id }}"

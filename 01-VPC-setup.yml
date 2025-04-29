@@ -7,7 +7,9 @@
         name: VPCLCL42837_FIRST
         cidr_block: 10.0.0.0/20
         region: us-west-2
-      register: aws_vpc_info
+#      register: aws_vpc_info
+      var:
+        vpc_info: aws_vpc_info
     - name: Create the VPC Subnet
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.0.0/24
