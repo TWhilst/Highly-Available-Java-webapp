@@ -1,0 +1,10 @@
+---
+- name: Create a VPC with its requirements
+  hosts: localhost
+  tasks:
+    - name: Create the AWS VPC
+      amazon.aws.ec2_vpc_net:
+        name: VPCLCL42837_FIRST
+        cidr_block: 10.255.255.0/24
+        region: us-west-2
+
