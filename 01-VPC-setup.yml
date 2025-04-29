@@ -5,6 +5,17 @@
     - name: Create the AWS VPC
       amazon.aws.ec2_vpc_net:
         name: VPCLCL42837_FIRST
-        cidr_block: 10.255.255.0/24
+        cidr_block: 10.0.0.0/24
         region: us-west-2
+      register: aws_vpc_info
+    - name: Create the VPC Subnet
+      amazon.aws.ec2_vpc_subnet:
+        cidr: 10.100.10.0/24
+        az: us-west-2a
+        region: us-west-2
+        vpc_id: "{{ aws_vpc_info.id }}"
+
+
+
+
 
