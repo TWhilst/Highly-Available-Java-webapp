@@ -15,24 +15,32 @@
         region: us-west-2
         az: us-west-2a
         vpc_id: "{{ vpc_info.vpc.id }}"
+        tag:
+          Name: BUILD00001
     - name: VPC Private Subnet in AZ1
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.1.0/24
         region: us-west-2
         az: us-west-2a
         vpc_id: "{{ vpc_info.vpc.id }}"
+        tag:
+          Name: BUILD00002
     - name: VPC Public Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.2.0/24
         region: us-west-2
         az: us-west-2b
         vpc_id: "{{ vpc_info.vpc.id }}"
+        tag:
+          Name: BUILD00011
     - name: VPC Private Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.3.0/24
         region: us-west-2
         az: us-west-2b
         vpc_id: "{{ vpc_info.vpc.id }}"
+        tag:
+          Name: BUILD00012
 
 
 
