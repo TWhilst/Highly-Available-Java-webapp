@@ -1,7 +1,8 @@
 ---
 - name: Create a VPC Subnet
+  import_playbook: 01-VPC-setup.yml
   hosts: localhost
-  gather_facts: yes
+  gather_facts: no
   tasks:
     - name: VPC Public Subnet in AZ1
       amazon.aws.ec2_vpc_subnet:
