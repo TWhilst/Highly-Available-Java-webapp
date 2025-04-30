@@ -2,32 +2,28 @@
 - name: Create a VPC Subnet
   hosts: localhost
   gather_facts: yes
-  vars:
-    myvar: hostvars['localhost']['vpc_info']
   tasks:
-    - name: debug
-      debug: "{{myvar}}"
-#    - name: VPC Public Subnet in AZ1
-#      amazon.aws.ec2_vpc_subnet:
-#        cidr: 10.0.0.0/24
-#        region: us-west-2
-#        az: us-west-2a
-#        vpc_id: "{{ vpc_info.vpc.id }}"
-#    - name: VPC Private Subnet in AZ1
-#      amazon.aws.ec2_vpc_subnet:
-#        cidr: 10.0.1.0/24
-#        region: us-west-2
-#        az: us-west-2a
-#        vpc_id: "{{ vpc_info.vpc.id }}"
-#    - name: VPC Public Subnet in AZ2
-#      amazon.aws.ec2_vpc_subnet:
-#        cidr: 10.0.2.0/24
-#        region: us-west-2
-#        az: us-west-2b
-#        vpc_id: "{{ vpc_info.vpc.id }}"
-#    - name: VPC Private Subnet in AZ2
-#      amazon.aws.ec2_vpc_subnet:
-#        cidr: 10.0.3.0/24
-#        region: us-west-2
-#        az: us-west-2b
-#        vpc_id: "{{ vpc_info.vpc.id }}"
+    - name: VPC Public Subnet in AZ1
+      amazon.aws.ec2_vpc_subnet:
+        cidr: 10.0.0.0/24
+        region: us-west-2
+        az: us-west-2a
+        vpc_id: "{{ vpc_info.vpc.id }}"
+    - name: VPC Private Subnet in AZ1
+      amazon.aws.ec2_vpc_subnet:
+        cidr: 10.0.1.0/24
+        region: us-west-2
+        az: us-west-2a
+        vpc_id: "{{ vpc_info.vpc.id }}"
+    - name: VPC Public Subnet in AZ2
+      amazon.aws.ec2_vpc_subnet:
+        cidr: 10.0.2.0/24
+        region: us-west-2
+        az: us-west-2b
+        vpc_id: "{{ vpc_info.vpc.id }}"
+    - name: VPC Private Subnet in AZ2
+      amazon.aws.ec2_vpc_subnet:
+        cidr: 10.0.3.0/24
+        region: us-west-2
+        az: us-west-2b
+        vpc_id: "{{ vpc_info.vpc.id }}"
