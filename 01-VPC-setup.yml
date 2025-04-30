@@ -11,7 +11,7 @@
       register: aws_vpc_info
 
     - name: Set a cacheable fact
-      set_fact:
+      ansible.builtin.set_fact:
         vpc_info: "{{ aws_vpc_info }}"
       cacheable: yes
 
