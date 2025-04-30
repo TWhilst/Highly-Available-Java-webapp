@@ -51,7 +51,7 @@
           Name: VPCLCL42837_FIRST_IGW
       register: igw_info
     - name: Create Route table
-      amazon.aws.ec2_vpc_net:
+      amazon.aws.ec2_vpc_route_table:
         region: us-west-2
         subnets:
           - "{{ subnet_info1.subnet.id }}"
