@@ -15,7 +15,7 @@
         region: us-west-2
         az: us-west-2a
         vpc_id: "{{ vpc_info.vpc.id }}"
-        tag:
+        tags:
           Name: BUILD00001
     - name: VPC Private Subnet in AZ1
       amazon.aws.ec2_vpc_subnet:
@@ -23,7 +23,7 @@
         region: us-west-2
         az: us-west-2a
         vpc_id: "{{ vpc_info.vpc.id }}"
-        tag:
+        tags:
           Name: BUILD00002
     - name: VPC Public Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
@@ -31,7 +31,7 @@
         region: us-west-2
         az: us-west-2b
         vpc_id: "{{ vpc_info.vpc.id }}"
-        tag:
+        tags:
           Name: BUILD00011
     - name: VPC Private Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
@@ -39,7 +39,7 @@
         region: us-west-2
         az: us-west-2b
         vpc_id: "{{ vpc_info.vpc.id }}"
-        tag:
+        tags:
           Name: BUILD00012
 
 
