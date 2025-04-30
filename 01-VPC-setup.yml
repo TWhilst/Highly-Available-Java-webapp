@@ -46,11 +46,13 @@
     - name: Create VPC INTERNET GATEWAY
       ec2_vpc_igw:
         vpc_id: "{{ vpc_info.vpc.id }}"
+        region: us-west-2
         tags:
           Name: VPCLCL42837_FIRST_IGW
       register: igw_info
     - name: Create Route table
       amazon.aws.ec2_vpc_net:
+        region: us-west-2
         subnets:
           - "{{ subnet_info1.subnet.id }}"
           - "{{ subnet_info2.subnet.id }}"
