@@ -24,7 +24,7 @@
         az: us-west-2a
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
-          Name: BUILD00002
+          Name: DEPLOY00001
     - name: VPC Public Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.2.0/24
@@ -40,7 +40,7 @@
         az: us-west-2b
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
-          Name: BUILD00012
+          Name: DEPLOY00011
 
 
 
