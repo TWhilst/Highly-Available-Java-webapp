@@ -60,6 +60,8 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw_info.gateway_id }}"
         vpc_id: "{{ vpc_info.vpc.id }}"
+        tags:
+          Name: VPCLCL42837_FIRST_RT
     - name: Create a Security Group
       amazon.aws.ec2_group:
         name: VPCLCL42837_FIRST_GRP
