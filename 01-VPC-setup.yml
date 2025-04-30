@@ -65,6 +65,7 @@
         name: VPCLCL42837_FIRST_GRP
         description: SSH and HTTP access
         vpc_id: "{{ vpc_info.vpc.id }}"
+        region: us-west-2
         rules:
           - proto: tcp
             ports:
