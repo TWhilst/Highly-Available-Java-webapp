@@ -1,6 +1,6 @@
 ---
 - name: Create a VPC Subnet
-#  import_playbook: 01-VPC-setup.yml
+  import_playbook: C:\Users\Toche\StudioProjects\Highly-Available-Java-webapp\01-VPC-setup.yml
   hosts: localhost
   gather_facts: yes
   tasks:
