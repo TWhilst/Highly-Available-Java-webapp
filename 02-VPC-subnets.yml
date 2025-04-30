@@ -1,7 +1,7 @@
 ---
 - name: Create a VPC Subnet
-  import_playbook: Highly-Available-Java-webapp\01-VPC-setup.yml
   hosts: localhost
+  import_playbook: Highly-Available-Java-webapp\01-VPC-setup.yml
   gather_facts: yes
   tasks:
     - name: VPC Public Subnet in AZ1
