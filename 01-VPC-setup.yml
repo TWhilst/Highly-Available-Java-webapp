@@ -13,7 +13,7 @@
     - name: Set a cacheable fact
       ansible.builtin.set_fact:
         vpc_info: "{{ aws_vpc_info }}"
-      cacheable: yes
+        cacheable: yes
 
 #    - name: Create the VPC Subnet
 #      amazon.aws.ec2_vpc_subnet:
