@@ -17,6 +17,7 @@
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
           Name: BUILD00001
+      register: subnet_info1
     - name: VPC Private Subnet in AZ1
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.1.0/24
@@ -33,6 +34,7 @@
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
           Name: BUILD00011
+      register: subnet_info2
     - name: VPC Private Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.3.0/24
@@ -41,6 +43,23 @@
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
           Name: DEPLOY00011
+    - name: Create VPC INTERNET GATEWAY
+      ec2_vpc_igw:
+        vpc_id: "{{ vpc_info.vpc.id }}"
+        tags:
+          Name: VPCLCL42837_FIRST_IGW
+      register: igw_info
+    - name: Create Route table
+      amazon.aws.ec2_vpc_net:
+        subnets:
+          - "{{ subnet_info1.subnet.id }}"
+          - "{{ subnet_info2.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw_info.gateway_id }}"
+        vpc_id: "{{ vpc_info.vpc.id }}"
+
+
 
 
 
