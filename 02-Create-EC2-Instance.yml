@@ -25,7 +25,7 @@
           group-name: VPCLCL42837_FIRST_GRP
           vpc-id: "{{ vpc_info.vpcs[0].id }}"
       register: SG_info
-    - name: Create a key pair and save private key into a file
+    - name: Create a key pair
       amazon.aws.ec2_key:
         name: toche
       register: toche_key
