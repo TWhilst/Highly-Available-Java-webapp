@@ -30,7 +30,7 @@
         name: toche
       register: toche_key
     - name: Save private key
-      copy: content="{{ toche_key.key.private_key }}" dest="./toche.pem" mode=0600
+      copy: content="{{ toche_key.key.private_key }}" dest="/home/ec2-user/tocheno1.pem" mode=0600
       when: toche_key.changed
     - debug: { var: SG_info }
     - name: Create EC2 instance for the Build Server in AZ1
