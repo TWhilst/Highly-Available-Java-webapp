@@ -11,7 +11,7 @@
       amazon.aws.ec2_vpc_subnet_info:
         filters:
           "tag:Name": BUILD00001
-        vpc-id: "{{ vpc_info.vpcs.id}}"
+        vpc-id: "{{ vpc_info.vpcs[0].id}}"
       register: subnet_info1
     - name: Get the info of the VPC Subnet for the instance in AZ2
       amazon.aws.ec2_vpc_subnet_info:
