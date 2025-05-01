@@ -2,7 +2,7 @@
 - name: Bulid Java Application
   hosts: build
   become: true
-  var:
+  vars:
     packages:
       - git
       - java-1.8*
