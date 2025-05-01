@@ -1,0 +1,23 @@
+---
+- name: Bulid Java Application
+  hosts: build
+  become: true
+  var:
+    packages:
+      - git
+      - java-1.8*
+      - maven
+  tasks:
+    - name: Install necessary Components
+      yum:
+        state: present
+        name: "{{ packages }}"
+    - name: Get Application Code
+      git:
+        repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
+        dest: /home/ec2-user/
+    - name:
+      shell: |
+        cd JavaWegb3
+        mvn clean test compile package
+        
