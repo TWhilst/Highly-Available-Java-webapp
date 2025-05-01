@@ -1,7 +1,6 @@
 ---
 - name: Create a VPC with its requirements
   hosts: localhost
-  gather_facts: yes
   tasks:
     - name: Create the AWS VPC
       amazon.aws.ec2_vpc_net:
@@ -26,6 +25,7 @@
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
           Name: DEPLOY00001
+      register: subnet_info11
     - name: VPC Public Subnet in AZ2
       amazon.aws.ec2_vpc_subnet:
         cidr: 10.0.2.0/24
@@ -43,6 +43,7 @@
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
           Name: DEPLOY00011
+      register: subnet_info12
     - name: Create VPC INTERNET GATEWAY
       ec2_vpc_igw:
         vpc_id: "{{ vpc_info.vpc.id }}"
@@ -59,6 +60,15 @@
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw_info.gateway_id }}"
+        vpc_id: "{{ vpc_info.vpc.id }}"
+        tags:
+          Name: VPCLCL42837_FIRST_RT
+    - name: Create Route table
+      amazon.aws.ec2_vpc_route_table:
+        region: us-west-2
+        subnets:
+          - "{{ subnet_info11.subnet.id }}"
+          - "{{ subnet_info12.subnet.id }}"
         vpc_id: "{{ vpc_info.vpc.id }}"
         tags:
           Name: VPCLCL42837_FIRST_RT

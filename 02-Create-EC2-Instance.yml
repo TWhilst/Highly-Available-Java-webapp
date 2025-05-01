@@ -1,0 +1,14 @@
+---
+- name: Create a EC2 Instance
+  hosts: localhost
+  tasks:
+    - name: Get the info of the VPC for the instance
+      amazon.aws.ec2_vpc_net_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST
+      register: vpc_info
+#    - name: Get the info of the VPC Subnet for the instance
+#      amazon.aws.ec2_vpc_net_info:
+#        filters:
+#          "tag:Name":
+#      register: vpc_info
