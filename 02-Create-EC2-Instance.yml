@@ -31,7 +31,7 @@
       register: toche_key
     - name: Save private key
       copy: content="{{ toche_key.key.private_key }}" dest="./toche.pem" mode=0600
-      when: ec2_key_result.changed
+      when: toche_key.changed
     - debug: { var: SG_info }
     - name: Create EC2 instance for the Build Server in both AZ
       amazon.aws.ec2_instance:
