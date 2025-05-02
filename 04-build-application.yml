@@ -48,14 +48,15 @@
         cd JavaWeb3
         sudo mvn clean test compile package
       when: done.changed
-    - name: check
-      file:
-        path: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
-        state: touch
+#    - name: check
+#      file:
+#        path: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
+#        state: touch
     - name: Save the Target file to local host
       ansible.builtin.fetch:
         src: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
         dest: /home/ec2-user/
+        flat: true
 
     #    - name: Set Maven Compiler Plugin configuration
     #      xml:
