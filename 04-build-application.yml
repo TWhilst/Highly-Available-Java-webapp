@@ -58,7 +58,7 @@
 #        dest: /home/ec2-user/
 #        flat: true
     - name: Run aws configure
-      expect:
+      ansible.builtin.expect:
         command: aws configure
         responses:
           AWS Access Key ID: "{{ aws-access-key }}"
