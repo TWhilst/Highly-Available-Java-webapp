@@ -22,18 +22,24 @@
         path: /home/ec2-user/JavaWeb3/pom.xml
         block: |
           <build>
-            <plugins>
-              <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                  <source>1.8</source>
-                  <target>1.8</target>
-                </configuration>
-              </plugin>
-            </plugins>
+              <plugins>
+                  <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-compiler-plugin</artifactId>
+                      <version>3.5.1</version>
+                      <configuration>
+                          <source>1.8</source>
+                          <target>1.8</target>
+                      </configuration>
+                  </plugin>
+                  <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-war-plugin</artifactId>
+                      <version>3.3.2</version>
+                  </plugin>
+              </plugins>
           </build>
-        marker: "# {mark} ANSIBLE MANAGED BLOCK - MAVEN COMPILER"
+#        marker: "# {mark} ANSIBLE MANAGED BLOCK - MAVEN COMPILER"
         insertafter: "</dependencies>" # Or potentially "<project>" if no dependencies exist yet
 #             insertbefore: "<build>" # Alternatively, insert before the <build> tag if it exists
         create: yes # Create the file if it doesn't exist (use with caution)
