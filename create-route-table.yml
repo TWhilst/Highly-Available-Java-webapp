@@ -36,7 +36,7 @@
         region: us-west-2
         subnets:
           - "{{ subnet_info1.subnets[0].id}}"
-        vpc_id: "{{ vpc_info.vpc.id }}"
+        vpc_id: "{{ vpc_info.vpcs[0].id}}"
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ ngws_info1[0].gateway_id }}"
@@ -48,7 +48,7 @@
         region: us-west-2
         subnets:
           - "{{ subnet_info11.subnets[0].id}}"
-        vpc_id: "{{ vpc_info.vpc.id }}"
+        vpc_id: "{{ vpc_info.vpcs[0].id}}"
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{ ngws_info11[0].gateway_id }}"
