@@ -16,7 +16,19 @@
       git:
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
         dest: /home/ec2-user/JavaWeb3
-    - name:
+    - name: Configure maven-compiler-plugin in pom.xml
+      xml:
+        path: /home/ec2-user/JavaWeb3/pom.xml
+        xpath: /project/build/plugins
+        add_children:
+          - plugin:
+              - groupId: org.apache.maven.plugins
+              - artifactId: maven-compiler-plugin
+              - version: "3.8.1"
+              - configuration:
+                  - source: "1.8"
+                  - target: "1.8"
+    - name: test compile and build the application
       shell: |
         cd JavaWeb3
         sudo mvn clean test compile package
