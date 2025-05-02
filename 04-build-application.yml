@@ -37,6 +37,7 @@
         insertafter: "</dependencies>" # Or potentially "<project>" if no dependencies exist yet
 #             insertbefore: "<build>" # Alternatively, insert before the <build> tag if it exists
         create: yes # Create the file if it doesn't exist (use with caution)
+      register: done
 
 #    - name: Install lxml Python library on target hosts
 #      ansible.builtin.pip:
@@ -58,4 +59,5 @@
       shell: |
         cd JavaWeb3
         sudo mvn clean test compile package
+      when: done.changed
         
