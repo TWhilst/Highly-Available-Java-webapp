@@ -57,22 +57,22 @@
 #        src: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
 #        dest: /home/ec2-user/
 #        flat: true
-    - name: create .aws directory
-      file:
-        state: directory
-        path: /home/ec2-user/.aws
-        mode: 0700
+#    - name: create .aws directory
+#      file:
+#        state: directory
+#        path: /home/ec2-user/.aws
+#        mode: 0700
     - name: Copy the aws credential files to target host
       copy:
         src: /home/ec2-user/.aws/credentials
-        dest: /home/ec2-user/
+        dest: /home/ec2-user/.aws
         mode: 0700
         owner: root
         group: root
     - name: Copy the aws config files to target host
       copy:
         src: /home/ec2-user/.aws/config
-        dest: /home/ec2-user/
+        dest: /home/ec2-user/.aws
         mode: 0700
         owner: root
         group: root
