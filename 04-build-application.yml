@@ -65,7 +65,7 @@
           AWS Secret Access Key: "{{ aws-secret-access-key }}"
           Default region name: us-west-2
           Default output format:
-      no_log: true
+#      no_log: true
     - name: Create the S3 Bucket and copy the file in it
       shell: |
         cd /home/ec2-user/JavaWeb3/target/
