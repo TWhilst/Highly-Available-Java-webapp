@@ -39,7 +39,7 @@
         vpc_id: "{{ vpc_info.vpcs[0].id}}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{ ngws_info1[0].gateway_id }}"
+            gateway_id: "{{ ngws_info1.result[0].nat_gateway_id }}"
         tags:
           Name: VPCLCL42837_FIRST_RT_PRV1
     - debug: {var: ngws_info11}
@@ -51,7 +51,7 @@
         vpc_id: "{{ vpc_info.vpcs[0].id}}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{ ngws_info11[0].gateway_id }}"
+            gateway_id: "{{ ngws_info11.result[0].nat_gateway_id }}"
         tags:
           Name: VPCLCL42837_FIRST_RT_PRV11
 
