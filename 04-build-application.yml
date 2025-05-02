@@ -7,6 +7,7 @@
       - git
       - java-1.8*
       - maven
+      - pip3
   tasks:
     - name: Install necessary Components
       yum:
