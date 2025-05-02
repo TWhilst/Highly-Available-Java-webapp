@@ -19,7 +19,7 @@
         dest: /home/ec2-user/JavaWeb3
     - name: Ensure Maven compiler plugin configuration block
       blockinfile:
-        path: /path/to/your/project/pom.xml
+        path: /home/ec2-user/JavaWeb3/pom.xml
         block: |
           <build>
             <plugins>
