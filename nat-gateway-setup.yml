@@ -30,6 +30,6 @@
       amazon.aws.ec2_vpc_nat_gateway:
         state: present
         subnet_id: "{{ subnet_info11.subnets[0].id}}"
-        tag:
+        tags:
           Name: VPCLCL42837_FIRST_NGW11
       register: new_nat_gateway1
