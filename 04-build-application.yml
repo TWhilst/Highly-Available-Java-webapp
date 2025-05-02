@@ -7,7 +7,7 @@
       - git
       - java-1.8*
       - maven
-      - pip3
+      - pip
   tasks:
     - name: Install necessary Components
       yum:
@@ -20,7 +20,7 @@
     - name: Install lxml Python library on target hosts
       ansible.builtin.pip:
         name: lxml
-        executable: pip3
+        executable: pip
     - name: Configure maven-compiler-plugin in pom.xml
       community.general.xml:
         path: /home/ec2-user/JavaWeb3/pom.xml
