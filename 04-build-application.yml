@@ -1,6 +1,6 @@
 ---
 - name: Bulid Java Application
-  hosts: buildServer1
+  hosts: build
   become: true
   vars:
     packages:
