@@ -19,5 +19,5 @@
     - name:
       shell: |
         cd JavaWeb3
-        mvn clean test compile package
+        sudo mvn clean test compile package
         
