@@ -57,15 +57,15 @@
 #        src: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
 #        dest: /home/ec2-user/
 #        flat: true
-    - name: Run aws configure
-      ansible.builtin.expect:
-        command: aws configure
-        responses:
-          AWS Access Key ID: "{{ aws-access-key }}"
-          AWS Secret Access Key: "{{ aws-secret-access-key }}"
-          Default region name: "us-west-2"
-          Default output format: ""
-#      no_log: true
+    - name: Copy the aws files to target host
+      copy:
+        src:
+          - /home/ec2-user/.aws/credentials
+          - /home/ec2-user/.aws/config
+        dest: /home/ec2-user/
+        mode: 0600
+        owner: root
+        group: root
     - name: Create the S3 Bucket and copy the file in it
       shell: |
         cd /home/ec2-user/JavaWeb3/target/
