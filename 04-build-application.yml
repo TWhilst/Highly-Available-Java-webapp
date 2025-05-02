@@ -16,6 +16,10 @@
       git:
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
         dest: /home/ec2-user/JavaWeb3
+    - name: Install lxml Python library on target hosts
+      ansible.builtin.pip:
+        name: lxml
+        executable: pip3
     - name: Configure maven-compiler-plugin in pom.xml
       community.general.xml:
         path: /home/ec2-user/JavaWeb3/pom.xml
