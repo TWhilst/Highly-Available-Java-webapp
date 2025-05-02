@@ -35,7 +35,7 @@
       amazon.aws.ec2_vpc_route_table:
         region: us-west-2
         subnets:
-          - "{{ subnets_info1.subnets[0].id}}"
+          - "{{ subnet_info1.subnets[0].id}}"
         vpc_id: "{{ vpc_info.vpc.id }}"
         routes:
           - dest: 0.0.0.0/0
