@@ -23,13 +23,13 @@
       amazon.aws.ec2_vpc_nat_gateway:
         state: present
         subnet_id: "{{ subnet_info1.subnets[0].id}}"
+        if_exist_do_not_create: true
         tags:
           Name: VPCLCL42837_FIRST_NGW1
-      register: new_nat_gateway
     - name: Create new nat gateway in AZ2.
       amazon.aws.ec2_vpc_nat_gateway:
         state: present
         subnet_id: "{{ subnet_info11.subnets[0].id}}"
+        if_exist_do_not_create: true
         tags:
           Name: VPCLCL42837_FIRST_NGW11
-      register: new_nat_gateway1
