@@ -2,59 +2,58 @@
 - name: Create Deployment Server
   hosts: buildServer1
   tasks:
-    tasks:
-      - name: Get the info of the VPC for the instance
-        amazon.aws.ec2_vpc_net_info:
-          filters:
-            "tag:Name": VPCLCL42837_FIRST
-        register: vpc_info
-      - name: Get the info of the VPC Subnet for the instance in AZ1
-        amazon.aws.ec2_vpc_subnet_info:
-          filters:
-            "tag:Name": DEPLOY00001
-            vpc-id: "{{ vpc_info.vpcs[0].id}}"
-        register: subnet_info1
-      - name: Get the info of the VPC Subnet for the instance in AZ2
-        amazon.aws.ec2_vpc_subnet_info:
-          filters:
-            "tag:Name": DEPLOY00011
-            vpc-id: "{{ vpc_info.vpcs[0].id}}"
-        register: subnet_info11
-      - name: Create a Security Group
-        amazon.aws.ec2_group:
-          name: VPCLCL42837_FIRST_GRP_SSHTOM
-          description: SSH and Tomcat access
-          vpc_id: "{{ vpc_info.vpcs[0].id}}"
-          rules:
-            - proto: tcp
-              ports:
-                - 80
-                - 8080
-              cidr_ip: 0.0.0.0/0
-      - name: Get the security group info for the Private Subnet
-        amazon.aws.ec2_group_info:
-          filters:
-            group-name: VPCLCL42837_FIRST_GRP_SSHTOM
-            vpc-id: "{{ vpc_info.vpcs[0].id }}"
-        register: SG_info
-      - debug: { var: SG_info }
-      - name: Create EC2 instance for the Deploy Server in AZ1
-        amazon.aws.ec2_instance:
-          name: deploy-Server1
-          vpc_subnet_id: "{{ subnet_info1.subnets[0].id}}"
-          security_group: "{{ SG_info.security_groups[0].group_id}}"
-          key_name: toche-key
-          instance_type: t2.micro
-          image_id: ami-07b0c09aab6e66ee9
-          network:
-            assign_public_ip: true
-      - name: Create EC2 instance for the Deploy Server in AZ2
-        amazon.aws.ec2_instance:
-          name: deploy-Server2
-          vpc_subnet_id: "{{ subnet_info11.subnets[0].id}}"
-          security_group: "{{ SG_info.security_groups[0].group_id}}"
-          key_name: toche-key
-          instance_type: t2.micro
-          image_id: ami-07b0c09aab6e66ee9
-          network:
-            assign_public_ip: true
+    - name: Get the info of the VPC for the instance
+      amazon.aws.ec2_vpc_net_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST
+      register: vpc_info
+    - name: Get the info of the VPC Subnet for the instance in AZ1
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": DEPLOY00001
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info1
+    - name: Get the info of the VPC Subnet for the instance in AZ2
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": DEPLOY00011
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info11
+    - name: Create a Security Group
+      amazon.aws.ec2_group:
+        name: VPCLCL42837_FIRST_GRP_SSHTOM
+        description: SSH and Tomcat access
+        vpc_id: "{{ vpc_info.vpcs[0].id}}"
+        rules:
+          - proto: tcp
+            ports:
+              - 80
+              - 8080
+            cidr_ip: 0.0.0.0/0
+    - name: Get the security group info for the Private Subnet
+      amazon.aws.ec2_group_info:
+        filters:
+          group-name: VPCLCL42837_FIRST_GRP_SSHTOM
+          vpc-id: "{{ vpc_info.vpcs[0].id }}"
+      register: SG_info
+    - debug: { var: SG_info }
+    - name: Create EC2 instance for the Deploy Server in AZ1
+      amazon.aws.ec2_instance:
+        name: deploy-Server1
+        vpc_subnet_id: "{{ subnet_info1.subnets[0].id}}"
+        security_group: "{{ SG_info.security_groups[0].group_id}}"
+        key_name: toche-key
+        instance_type: t2.micro
+        image_id: ami-07b0c09aab6e66ee9
+        network:
+          assign_public_ip: true
+    - name: Create EC2 instance for the Deploy Server in AZ2
+      amazon.aws.ec2_instance:
+        name: deploy-Server2
+        vpc_subnet_id: "{{ subnet_info11.subnets[0].id}}"
+        security_group: "{{ SG_info.security_groups[0].group_id}}"
+        key_name: toche-key
+        instance_type: t2.micro
+        image_id: ami-07b0c09aab6e66ee9
+        network:
+          assign_public_ip: true
