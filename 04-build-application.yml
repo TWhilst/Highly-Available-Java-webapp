@@ -17,7 +17,7 @@
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
         dest: /home/ec2-user/JavaWeb3
     - name: Configure maven-compiler-plugin in pom.xml
-      xml:
+      community.general.xml:
         path: /home/ec2-user/JavaWeb3/pom.xml
         xpath: /project/build/plugins
         add_children:
