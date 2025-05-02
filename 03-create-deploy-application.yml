@@ -22,8 +22,8 @@
         register: subnet_info11
       - name: Create a Security Group
         amazon.aws.ec2_group:
-          name: VPCLCL42837_FIRST_GRP_SSH
-          description: SSH access
+          name: VPCLCL42837_FIRST_GRP_SSHTOM
+          description: SSH and Tomcat access
           vpc_id: "{{ vpc_info.vpcs[0].id}}"
           region: us-west-2
           rules:
@@ -35,7 +35,7 @@
       - name: Get the security group info for the Private Subnet
         amazon.aws.ec2_group_info:
           filters:
-            group-name: VPCLCL42837_FIRST_GRP_SSH
+            group-name: VPCLCL42837_FIRST_GRP_SSHTOM
             vpc-id: "{{ vpc_info.vpcs[0].id }}"
         register: SG_info
       - debug: { var: SG_info }
