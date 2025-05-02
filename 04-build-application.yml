@@ -17,22 +17,43 @@
       git:
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
         dest: /home/ec2-user/JavaWeb3
-    - name: Install lxml Python library on target hosts
-      ansible.builtin.pip:
-        name: lxml
-        executable: pip
-    - name: Configure maven-compiler-plugin in pom.xml
-      community.general.xml:
-        path: /home/ec2-user/JavaWeb3/pom.xml
-        xpath: /project/build/plugins
-        add_children:
-          - plugin:
-              - groupId: org.apache.maven.plugins
-              - artifactId: maven-compiler-plugin
-              - version: "3.8.1"
-              - configuration:
-                  - source: "1.8"
-                  - target: "1.8"
+    - name: Ensure Maven compiler plugin configuration block
+      blockinfile:
+        path: /path/to/your/project/pom.xml
+        block: |
+          <build>
+            <plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+                </configuration>
+              </plugin>
+            </plugins>
+          </build>
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - MAVEN COMPILER"
+        insertafter: "</dependencies>" # Or potentially "<project>" if no dependencies exist yet
+#             insertbefore: "<build>" # Alternatively, insert before the <build> tag if it exists
+        create: yes # Create the file if it doesn't exist (use with caution)
+
+#    - name: Install lxml Python library on target hosts
+#      ansible.builtin.pip:
+#        name: lxml
+#        executable: pip
+#    - name: Configure maven-compiler-plugin in pom.xml
+#      community.general.xml:
+#        path: /home/ec2-user/JavaWeb3/pom.xml
+#        xpath: /project/build/plugins
+#        add_children:
+#          - plugin:
+#              - groupId: org.apache.maven.plugins
+#              - artifactId: maven-compiler-plugin
+#              - version: "3.8.1"
+#              - configuration:
+#                  - source: "1.8"
+#                  - target: "1.8"
     - name: test compile and build the application
       shell: |
         cd JavaWeb3
