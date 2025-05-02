@@ -1,5 +1,5 @@
 ---
-- name: Create a EC2 Instance
+- name: Create Build Server
   hosts: localhost
   tasks:
     - name: Get the info of the VPC for the instance

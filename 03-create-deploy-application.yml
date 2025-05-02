@@ -1,6 +1,6 @@
 ---
 - name: Create Deployment Server
-  hosts: buildServer1
+  hosts: localhost
   tasks:
     - name: Get the info of the VPC for the instance
       amazon.aws.ec2_vpc_net_info:
