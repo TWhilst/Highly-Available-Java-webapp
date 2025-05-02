@@ -17,6 +17,7 @@
       git:
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
         dest: /home/ec2-user/JavaWeb3
+        force: yes
     - name: Ensure Maven compiler plugin configuration block
       blockinfile:
         path: /home/ec2-user/JavaWeb3/pom.xml
