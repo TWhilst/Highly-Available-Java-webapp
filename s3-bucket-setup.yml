@@ -1,5 +1,9 @@
 ---
 - name: Create and Manage S3 Bucket
-  hosts: build
+  hosts: localhost
   tasks:
-    -
+    - name:
+      shell: |
+        sudo aws s3 mb s3://prjwarfilebck001
+        sudo aws s3 cp WebAppCal-0.0.6.war s3://prjwarfilebck001
+        

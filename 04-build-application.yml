@@ -52,11 +52,25 @@
 #      file:
 #        path: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
 #        state: touch
-    - name: Save the Target file to local host
-      ansible.builtin.fetch:
-        src: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
-        dest: /home/ec2-user/
-        flat: true
+#    - name: Save the Target file to local host
+#      ansible.builtin.fetch:
+#        src: /home/ec2-user/JavaWeb3/target/WebAppCal-0.0.6.war
+#        dest: /home/ec2-user/
+#        flat: true
+    - name: Run aws configure
+      expect:
+        command: aws configure
+        responses:
+          AWS Access Key ID: "{{ aws-access-key }}"
+          AWS Secret Access Key: "{{ aws-secret-access-key }}"
+          Default region name: us-west-2
+          Default output format:
+      no_log: true
+    - name: Create the S3 Bucket and copy the file in it
+      shell: |
+        cd /home/ec2-user/JavaWeb3/target/
+        sudo aws s3 mb s3://prjwarfilebck001
+        sudo aws s3 cp WebAppCal-0.0.6.war s3://prjwarfilebck001
 
     #    - name: Set Maven Compiler Plugin configuration
     #      xml:
