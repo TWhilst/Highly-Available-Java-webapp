@@ -18,8 +18,8 @@
     - name: Startup the Server
       shell: |
         cd apache-tomcat-7.0.94
-        sudo cd bin 
-        sudo ./startup.sh
+        cd bin 
+        ./startup.sh
         
     
         
