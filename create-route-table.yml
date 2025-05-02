@@ -1,0 +1,63 @@
+---
+- name: Setup Private Route Table
+  hosts: localhost
+  tasks:
+    - name: Get the info of the VPC for the instance
+      amazon.aws.ec2_vpc_net_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST
+      register: vpc_info
+    - name: Get the info of the VPC Subnet for the instance in AZ1
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": DEPLOY00001
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info1
+    - name: Get the info of the VPC Subnet for the instance in AZ2
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": DEPLOY00011
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info11
+    - name: Get details on nat gateways in AZ1
+      amazon.aws.ec2_vpc_nat_gateway_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST_NGW1
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: ngws_info1
+    - name: Get details on nat gateways in AZ2
+      amazon.aws.ec2_vpc_nat_gateway_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST_NGW11
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: ngws_info11
+    - name: Create Route table for Private subnet1
+      amazon.aws.ec2_vpc_route_table:
+        region: us-west-2
+        subnets:
+          - "{{ subnet_info1.subnet[0].id }}"
+        vpc_id: "{{ vpc_info.vpc.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ ngws_info1[0].gateway_id }}"
+        tags:
+          Name: VPCLCL42837_FIRST_RT_PRV1
+    - debug: {var: ngws_info11}
+    - name: Create Route table for Private subnet11
+      amazon.aws.ec2_vpc_route_table:
+        region: us-west-2
+        subnets:
+          - "{{ subnet_info11.subnet[0].id }}"
+        vpc_id: "{{ vpc_info.vpc.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ ngws_info11[0].gateway_id }}"
+        tags:
+          Name: VPCLCL42837_FIRST_RT_PRV11
+
+
+    #    - name: Get route table id
+    #      amazon.aws.ec2_vpc_route_table_info:
+    #        filters:
+    #          "tag:Name":
+
