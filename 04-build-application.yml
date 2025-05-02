@@ -15,7 +15,7 @@
     - name: Get Application Code
       git:
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
-        dest: /home/ec2-user
+        dest: /home/ec2-user/JavaWeb3
     - name:
       shell: |
         cd JavaWeb3
