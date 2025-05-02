@@ -15,9 +15,9 @@
     - name: Get Application Code
       git:
         repo: 'https://github.com/CeeyIT-Solutions/JavaWeb3.git'
-        dest: /home/ec2-user/
+        dest: /home/ec2-user
     - name:
       shell: |
-        cd JavaWegb3
+        cd JavaWeb3
         mvn clean test compile package
         
