@@ -1,11 +1,11 @@
 ---
 - name: Bulid Java Application
-  hosts: build
+  hosts: buildServer1
   become: true
   vars:
     packages:
       - git
-      - java-1.8*
+      - java-17*
       - maven
       - pip
   tasks:
@@ -41,7 +41,7 @@
               </plugins>
           </build>
 #        marker: "# {mark} ANSIBLE MANAGED BLOCK - MAVEN COMPILER"
-        insertafter: "</dependencies>" # Or potentially "<project>" if no dependencies exist yet
+#        insertafter: "</dependencies>" # Or potentially "<project>" if no dependencies exist yet
 #             insertbefore: "<build>" # Alternatively, insert before the <build> tag if it exists
         create: yes # Create the file if it doesn't exist (use with caution)
       register: done
