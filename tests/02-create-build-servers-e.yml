@@ -27,10 +27,10 @@
       register: SG_info
     - name: Create a key pair
       amazon.aws.ec2_key:
-        name: toche-key
+        name: tochekey
       register: toche_key
     - name: Save private key
-      copy: content="{{ toche_key.key.private_key }}" dest="/home/ec2-user/toche-key.pem" mode=0600
+      copy: content="{{ toche_key.key.private_key }}" dest="/home/ec2-user/tochekey.pem" mode=0600
       when: toche_key.changed
     - debug: { var: SG_info }
     - name: Create EC2 instance for the Build Server in AZ1
@@ -38,7 +38,7 @@
         name: buildServer1
         vpc_subnet_id: "{{ subnet_info1.subnets[0].id}}"
         security_group: "{{ SG_info.security_groups[0].group_id}}"
-        key_name: toche-key
+        key_name: tochekey
         instance_type: t2.micro
         image_id: ami-07b0c09aab6e66ee9
         network:
@@ -48,7 +48,7 @@
         name: buildServer2
         vpc_subnet_id: "{{ subnet_info11.subnets[0].id}}"
         security_group: "{{ SG_info.security_groups[0].group_id}}"
-        key_name: toche-key
+        key_name: tochekey
         instance_type: t2.micro
         image_id: ami-07b0c09aab6e66ee9
         network:
