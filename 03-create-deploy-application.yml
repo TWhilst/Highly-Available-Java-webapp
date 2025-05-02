@@ -25,7 +25,6 @@
           name: VPCLCL42837_FIRST_GRP_SSHTOM
           description: SSH and Tomcat access
           vpc_id: "{{ vpc_info.vpcs[0].id}}"
-          region: us-west-2
           rules:
             - proto: tcp
               ports:
