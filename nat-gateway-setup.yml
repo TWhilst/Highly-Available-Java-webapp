@@ -1,0 +1,35 @@
+---
+- name: Create Build Server
+  hosts: localhost
+  tasks:
+    - name: Get the info of the VPC for the instance
+      amazon.aws.ec2_vpc_net_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST
+      register: vpc_info
+    - name: Get the info of the VPC Subnet for the instance in AZ1
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": BUILD00001
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info1
+    - name: Get the info of the VPC Subnet for the instance in AZ2
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": BUILD00011
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info11
+    - name: Create new nat gateway in AZ1.
+      amazon.aws.ec2_vpc_nat_gateway:
+        state: present
+        subnet_id: "{{ subnet_info1.subnets[0].id}}"
+        tag:
+          Name: VPCLCL42837_FIRST_NGW1
+      register: new_nat_gateway
+    - name: Create new nat gateway in AZ2.
+      amazon.aws.ec2_vpc_nat_gateway:
+        state: present
+        subnet_id: "{{ subnet_info11.subnets[0].id}}"
+        tag:
+          Name: VPCLCL42837_FIRST_NGW11
+      register: new_nat_gateway1
