@@ -35,7 +35,7 @@
     - debug: { var: SG_info }
     - name: Create EC2 instance for the Build Server in AZ1
       amazon.aws.ec2_instance:
-        name: buildServer1
+        name: build-Server1
         vpc_subnet_id: "{{ subnet_info1.subnets[0].id}}"
         security_group: "{{ SG_info.security_groups[0].group_id}}"
         key_name: toche-key
@@ -45,7 +45,7 @@
           assign_public_ip: true
     - name: Create EC2 instance for the Build Server in AZ2
       amazon.aws.ec2_instance:
-        name: buildServer2
+        name: build-Server2
         vpc_subnet_id: "{{ subnet_info11.subnets[0].id}}"
         security_group: "{{ SG_info.security_groups[0].group_id}}"
         key_name: toche-key
