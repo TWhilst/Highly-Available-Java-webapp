@@ -36,12 +36,23 @@
         instance_type: t2.micro
       register: temp_info
     - debug: { var: temp_info }
-    - name: Get the info of the VPC for the instance
-      amazon.aws.ec2_vpc_net_info:
+    - name: Get the info of the VPC Subnet for the instance in AZ1
+      amazon.aws.ec2_vpc_subnet_info:
         filters:
-          "tag:Name": VPCLCL42837_FIRST
-      register: vpc_info
-    - debug: { var: vpc_info }
+          "tag:Name": DEPLOY00001
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info1
+    - name: Get the info of the VPC Subnet for the instance in AZ2
+      amazon.aws.ec2_vpc_subnet_info:
+        filters:
+          "tag:Name": DEPLOY00011
+          vpc-id: "{{ vpc_info.vpcs[0].id}}"
+      register: subnet_info11
+    - action:
+        module: ec2_elb_info
+        names: VPCLCL42837-FIRST-ALB
+      register: elb_info
+    - debug: { var: elb_info }
 #    - name: Example autoscaling group creation with a launch template
 #      amazon.aws.autoscaling_group:
 #        name: Deploy-scale-config-grp
@@ -54,7 +65,7 @@
 #        min_size: 1
 #        max_size: 10
 #        desired_capacity: 5
-#        vpc_zone_identifier: [ 'subnet-abcd1234', 'subnet-1a2b3c4d' ]
+#        vpc_zone_identifier: [ "{{ subnet_info1.subnets[0].id }}", "{{ subnet_info11.subnets[0].id }}" ]
 #        tags:
 #          - environment: production
 #            propagate_at_launch: false
