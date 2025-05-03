@@ -56,7 +56,8 @@
     - name: Example autoscaling group creation with a launch template
       amazon.aws.autoscaling_group:
         name: Deploy-scale-config-grp
-        load_balancers: [ "VPCLCL42837-FIRST-ALB" ]
+#        target_group_arns:
+        load_balancers: "VPCLCL42837-FIRST-ALB"
         availability_zones: [ 'us-west-2a', 'us-west-2b' ]
         launch_template:
           version: '1'
