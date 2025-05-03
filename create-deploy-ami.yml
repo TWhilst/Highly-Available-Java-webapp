@@ -29,7 +29,7 @@
       register: SG_info
     - name: Create an ec2 launch template
       amazon.aws.ec2_launch_template:
-        name: Deploy-scale-config
+        name: "Deploy-scale-config"
         security_group_ids: "{{ SG_info.security_groups[0].group_id}}"
         image_id: "{{ existing_amis }}"
         template_id: "{{ existing_amis }}"
