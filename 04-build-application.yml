@@ -65,15 +65,13 @@
     - name: Copy the aws credential files to target host
       copy:
         src: /home/ec2-user/.aws/credentials
-        dest: /home/ec2-user/.aws
-        mode: 0700
+        dest: /home/ec2-user/.aws/
         owner: root
         group: root
     - name: Copy the aws config files to target host
       copy:
         src: /home/ec2-user/.aws/config
-        dest: /home/ec2-user/.aws
-        mode: 0700
+        dest: /home/ec2-user/.aws/
         owner: root
         group: root
     - name: Create the S3 Bucket and copy the file in it
