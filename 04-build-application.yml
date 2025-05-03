@@ -77,8 +77,9 @@
     - name: Create the S3 Bucket and copy the file in it
       shell: |
         cd /home/ec2-user/JavaWeb3/target/
-        sudo aws s3 mb s3://prjwarfilebck001
-        sudo aws s3 cp WebAppCal-0.0.6.war s3://prjwarfilebck001
+        aws s3 mb s3://prjwarfilebck001
+        aws s3 cp WebAppCal-0.0.6.war s3://prjwarfilebck001
+      become_user: ec2-user
 
     #    - name: Set Maven Compiler Plugin configuration
     #      xml:
