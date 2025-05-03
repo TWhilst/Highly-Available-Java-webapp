@@ -13,8 +13,11 @@
         name:  "{{ packages }}"
     - name: Download and Extract Tomcat Binary
       shell: |
-        wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
-        tar xvf apache-tomcat-7.0.94.tar.gz
+        if [ ! -d apache-tomcat-7.0.94 ]; then
+          wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
+          tar xvf apache-tomcat-7.0.94.tar.gz
+          rm -f apache-tomcat-7.0.94.tar.gz
+        fi
     - name: Startup the Server
       shell: |
         cd apache-tomcat-7.0.94
