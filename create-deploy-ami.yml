@@ -53,11 +53,18 @@
 #        names: VPCLCL42837-FIRST-ALB
 #      register: elb_info
 #    - debug: { var: elb_info }
+    - name: Create a target group with a default health check
+      community.aws.elb_target_group:
+        name: VPCLCL42837-FIRST-ALB-TG
+        protocol: http
+        port: 80
+        vpc_id: "{{ ec2_info.instances[0].vpc_id}}"
+        state: present
+      register: tg_info
     - name: Example autoscaling group creation with a launch template
       amazon.aws.autoscaling_group:
         name: Deploy-scale-config-grp
-#        target_group_arns:
-        load_balancers: "VPCLCL42837-FIRST-ALB"
+        target_group_arns:
         availability_zones: [ 'us-west-2a', 'us-west-2b' ]
         launch_template:
           version: '1'
