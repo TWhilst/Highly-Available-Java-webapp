@@ -36,7 +36,7 @@
       register: subnet_info11
     - name: Create a target group with a default health check
       community.aws.elb_target_group:
-        name: VPCLCL42837_FIRST_ALB_TG
+        name: VPCLCL42837-FIRST-ALB-TG
         protocol: http
         port: 80
         vpc_id: "{{ vpc_info.vpcs[0].id}}"
