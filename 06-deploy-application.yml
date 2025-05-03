@@ -31,6 +31,13 @@
       copy:
         src: /home/ec2-user/.aws/config
         dest: /home/ec2-user/.aws/
+    - name: Ensure Tomcat webapps directory has correct permissions
+      ansible.builtin.file:
+        path: /home/ec2-user/apache-tomcat-7.0.94/webapps
+        mode: 0775
+        recurse: yes
+        owner: ec2-user
+        group: ec2-user
     - name: Download files from S3 Bucket to Deploy Server
       shell: |
         cd ~
