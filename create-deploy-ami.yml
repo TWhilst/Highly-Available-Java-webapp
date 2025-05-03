@@ -8,12 +8,12 @@
           "tag:Name": deployServer2
       register: ec2_info
     - debug: { var: ec2_info }
-    - name: Check if AMI with base name exists
-      amazon.aws.ec2_ami_info:
-        filters:
-          name: DeployJavaLinuxAmi
-      register: existing_amis
-    - debug: { var: existing_amis }
+#    - name: Check if AMI with base name exists
+#      amazon.aws.ec2_ami_info:
+#        filters:
+#          name: DeployJavaLinuxAmi
+#      register: existing_amis
+#    - debug: { var: existing_amis }
     - name: Basic AMI Creation
       amazon.aws.ec2_ami:
         instance_id: "{{ec2_info.instances[0].instance_id}}"
@@ -21,6 +21,7 @@
         name: DeployJavaLinuxAmi
       register: ami_info
       when: existing_amis.images | length == 0
+      ignore_errors: true
     - debug: { var: ami_info }
     - name: Get the security group info for the Public Subnet
       amazon.aws.ec2_group_info:
