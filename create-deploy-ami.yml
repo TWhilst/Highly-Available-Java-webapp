@@ -76,4 +76,4 @@
         desired_capacity: 2
         vpc_zone_identifier: [ "{{ subnet_info1.subnets[0].id }}", "{{ subnet_info11.subnets[0].id }}" ]
         tags:
-          Name: Deploy-Server-Scale
+          - Name: Deploy-Server-Scale
