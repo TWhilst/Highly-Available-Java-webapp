@@ -45,7 +45,7 @@
     - debug: { var: tg_info }
     - name: Create The Load Balancer
       amazon.aws.elb_application_lb:
-        name: VPCLCL42837_FIRST_ALB
+        name: VPCLCL42837-FIRST-ALB
         security_groups: "{{ sg_info.group_id}}"
         subnets:
           - "{{ subnet_info1.subnets[0].id}}"
