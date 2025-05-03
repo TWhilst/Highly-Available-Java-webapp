@@ -20,6 +20,17 @@
         cd apache-tomcat-7.0.94
         cd bin 
         ./startup.sh
+    - name: Copy the aws credential files to target host
+      copy:
+        src: /home/ec2-user/.aws/credentials
+        dest: /home/ec2-user/.aws/
+    - name: Copy the aws config files to target host
+      copy:
+        src: /home/ec2-user/.aws/config
+        dest: /home/ec2-user/.aws/
+    - name: Download files from S3 Bucket to Deploy Server
+      shell: |
+        aws s3 cp s3://prjwarfilebck001/WebAppCal-0.0.6.war home/ec2-user/apache-tomcat-7.0.94/webapps
         
     
         
