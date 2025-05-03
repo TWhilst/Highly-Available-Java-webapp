@@ -21,7 +21,7 @@
           - proto: tcp
             ports: "{{ ports }}"
             cidr_ip: 0.0.0.0/0
-      register: sec_info
+      register: sg_info
     - name: Get the info of the VPC Subnet for the instance in AZ1
       amazon.aws.ec2_vpc_subnet_info:
         filters:
