@@ -48,8 +48,8 @@
           "tag:Name": DEPLOY00011
           vpc-id: "{{ ec2_info.instances[0].vpc_id}}"
       register: subnet_info11
-    - action:
-        module: ec2_elb_info
+    - name: Gather information about a particular ELB
+      community.aws.ec2_elb_info:
         names: VPCLCL42837-FIRST-ALB
       register: elb_info
     - debug: { var: elb_info }
