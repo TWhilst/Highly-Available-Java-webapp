@@ -36,15 +36,21 @@
         instance_type: t2.micro
       register: temp_info
     - debug: { var: temp_info }
+    - name: Get the info of the VPC for the instance
+      amazon.aws.ec2_vpc_net_info:
+        filters:
+          "tag:Name": VPCLCL42837_FIRST
+      register: vpc_info
+    - debug: { var: vpc_info }
 #    - name: Example autoscaling group creation with a launch template
 #      amazon.aws.autoscaling_group:
 #        name: Deploy-scale-config-grp
 #        load_balancers: [ 'lb1', 'lb2' ]
-#        availability_zones: [ 'eu-west-1a', 'eu-west-1b' ]
+#        availability_zones: [ 'us-west-2a', 'us-west-2b' ]
 #        launch_template:
 #          version: '1'
-#          launch_template_name: 'lt-example'
-#          launch_template_id: 'lt-123456'
+#          launch_template_name: "{{ temp_info.vdersions[0].launch_template_name }}"
+#          launch_template_id: "{{ temp_info.vdersions[0].launch_template_id }}"
 #        min_size: 1
 #        max_size: 10
 #        desired_capacity: 5
