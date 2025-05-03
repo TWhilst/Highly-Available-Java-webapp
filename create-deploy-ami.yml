@@ -13,3 +13,19 @@
         instance_id: "{{ec2_info.instances[0].instance_id}}"
         description: The AMI of the deploy server
         name: DeployJavaLinuxAmi
+      register: ami_info
+    - name: Get the security group info for the Public Subnet
+      amazon.aws.ec2_group_info:
+        filters:
+          group-name: VPCLCL42837_FIRST_GRP
+          vpc-id: "{{ ec2_info.instances[0].vpc_id}}"
+      register: SG_info
+    - debug: { var: ami_info }
+    - name: Create an ec2 launch template
+      amazon.aws.ec2_launch_template:
+        name: Deploy-scale-config
+        security_group_ids: "{{ SG_info.security_groups[0].group_id}}"
+        image_id: "{{ ami_info }}"
+        template_id: "{{ ami_info }}"
+        key_name: toche-key
+        instance_type: t2.micro
