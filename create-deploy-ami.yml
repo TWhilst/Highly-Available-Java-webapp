@@ -1,0 +1,15 @@
+---
+- name: Create an AMI for the Deploy Server
+  hosts: localhost
+  tasks:
+    - name: Gather information about any instance with a tag key Name and value Example
+      amazon.aws.ec2_instance_info:
+        filters:
+          name: deployServer2
+      register: ec2_info
+    - debug: { var: ec2_info }
+    - name: Basic AMI Creation
+      amazon.aws.ec2_ami:
+        instance_id: "{{ec2_info}}"
+        description: The AMI of the deploy server
+        name: DeployJavaLinuxAmi
