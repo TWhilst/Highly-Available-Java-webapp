@@ -13,6 +13,7 @@
         filters:
           "tag:Name": DeployJavaLinuxAmi
       register: existing_amis
+    - debug: { var: existing_amis }
     - name: Basic AMI Creation
       amazon.aws.ec2_ami:
         instance_id: "{{ec2_info.instances[0].instance_id}}"
