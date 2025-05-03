@@ -34,3 +34,21 @@
         image_id: "{{ existing_amis.images[0].image_id }}"
         key_name: toche-key
         instance_type: t2.micro
+      register: temp_info
+    - debug: { var: temp_info }
+#    - name: Example autoscaling group creation with a launch template
+#      amazon.aws.autoscaling_group:
+#        name: Deploy-scale-config-grp
+#        load_balancers: [ 'lb1', 'lb2' ]
+#        availability_zones: [ 'eu-west-1a', 'eu-west-1b' ]
+#        launch_template:
+#          version: '1'
+#          launch_template_name: 'lt-example'
+#          launch_template_id: 'lt-123456'
+#        min_size: 1
+#        max_size: 10
+#        desired_capacity: 5
+#        vpc_zone_identifier: [ 'subnet-abcd1234', 'subnet-1a2b3c4d' ]
+#        tags:
+#          - environment: production
+#            propagate_at_launch: false
