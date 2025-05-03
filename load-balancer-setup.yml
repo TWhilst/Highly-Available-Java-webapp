@@ -56,5 +56,5 @@
             Port: 80
             DefaultActions:
               - Type: forward
-                TargetGroupName: "{{ tg_info }}"
+                TargetGroupName: "{{ tg_info.target_group_name }}"
         state: present
