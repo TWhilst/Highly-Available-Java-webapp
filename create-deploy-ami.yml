@@ -61,16 +61,17 @@
         vpc_id: "{{ ec2_info.instances[0].vpc_id}}"
         state: present
       register: tg_info
-    - name: Example autoscaling group creation with a launch template
-      amazon.aws.autoscaling_group:
-        name: Deploy-scale-config-grp
-        target_group_arns:
-        availability_zones: [ 'us-west-2a', 'us-west-2b' ]
-        launch_template:
-          version: '1'
-          launch_template_name: "{{ temp_info.versions[0].launch_template_name }}"
-          launch_template_id: "{{ temp_info.versions[0].launch_template_id }}"
-        min_size: 2
-        max_size: 3
-        desired_capacity: 2
-        vpc_zone_identifier: [ "{{ subnet_info1.subnets[0].id }}", "{{ subnet_info11.subnets[0].id }}" ]
+    - debug: { var: tg_info}
+#    - name: Example autoscaling group creation with a launch template
+#      amazon.aws.autoscaling_group:
+#        name: Deploy-scale-config-grp
+#        target_group_arns:
+#        availability_zones: [ 'us-west-2a', 'us-west-2b' ]
+#        launch_template:
+#          version: '1'
+#          launch_template_name: "{{ temp_info.versions[0].launch_template_name }}"
+#          launch_template_id: "{{ temp_info.versions[0].launch_template_id }}"
+#        min_size: 2
+#        max_size: 3
+#        desired_capacity: 2
+#        vpc_zone_identifier: [ "{{ subnet_info1.subnets[0].id }}", "{{ subnet_info11.subnets[0].id }}" ]
