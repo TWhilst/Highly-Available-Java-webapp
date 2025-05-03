@@ -31,7 +31,7 @@
       amazon.aws.ec2_launch_template:
         name: Deploy-scale-config
         security_group_ids: "{{ SG_info.security_groups[0].group_id}}"
-        image_id: "{{ ami_info }}"
-        template_id: "{{ ami_info }}"
+        image_id: "{{ existing_amis }}"
+        template_id: "{{ existing_amis }}"
         key_name: toche-key
         instance_type: t2.micro
