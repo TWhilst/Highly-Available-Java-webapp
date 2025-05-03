@@ -14,13 +14,13 @@
         description: The AMI of the deploy server
         name: DeployJavaLinuxAmi
       register: ami_info
+    - debug: { var: ami_info }
     - name: Get the security group info for the Public Subnet
       amazon.aws.ec2_group_info:
         filters:
           group-name: VPCLCL42837_FIRST_GRP
           vpc-id: "{{ ec2_info.instances[0].vpc_id}}"
       register: SG_info
-    - debug: { var: ami_info }
     - name: Create an ec2 launch template
       amazon.aws.ec2_launch_template:
         name: Deploy-scale-config
