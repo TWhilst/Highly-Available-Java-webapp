@@ -60,8 +60,8 @@
         availability_zones: [ 'us-west-2a', 'us-west-2b' ]
         launch_template:
           version: '1'
-          launch_template_name: "{{ temp_info.vdersions[0].launch_template_name }}"
-          launch_template_id: "{{ temp_info.vdersions[0].launch_template_id }}"
+          launch_template_name: "{{ temp_info.versions[0].launch_template_name }}"
+          launch_template_id: "{{ temp_info.versions[0].launch_template_id }}"
         min_size: 2
         max_size: 3
         desired_capacity: 2
