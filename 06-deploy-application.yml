@@ -33,7 +33,9 @@
         dest: /home/ec2-user/.aws/
     - name: Download files from S3 Bucket to Deploy Server
       shell: |
+        cd ~
         aws s3 cp s3://prjwarfilebck001/WebAppCal-0.0.6.war /home/ec2-user/apache-tomcat-7.0.94/webapps
+      become_user: ec2-user
         
     
         
