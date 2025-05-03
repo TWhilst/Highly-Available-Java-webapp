@@ -14,6 +14,7 @@
         description: The AMI of the deploy server
         name: DeployJavaLinuxAmi
       register: ami_info
+      when: ami.info.images | length == 0
     - debug: { var: ami_info }
     - name: Get the security group info for the Public Subnet
       amazon.aws.ec2_group_info:
