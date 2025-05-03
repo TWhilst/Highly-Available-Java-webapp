@@ -48,24 +48,21 @@
           "tag:Name": DEPLOY00011
           vpc-id: "{{ ec2_info.instances[0].vpc_id}}"
       register: subnet_info11
-    - name: Gather information about a particular ELB
-      community.aws.ec2_elb_info:
-        names: VPCLCL42837-FIRST-ALB
-      register: elb_info
-    - debug: { var: elb_info }
-#    - name: Example autoscaling group creation with a launch template
-#      amazon.aws.autoscaling_group:
-#        name: Deploy-scale-config-grp
-#        load_balancers: [ 'lb1', 'lb2' ]
-#        availability_zones: [ 'us-west-2a', 'us-west-2b' ]
-#        launch_template:
-#          version: '1'
-#          launch_template_name: "{{ temp_info.vdersions[0].launch_template_name }}"
-#          launch_template_id: "{{ temp_info.vdersions[0].launch_template_id }}"
-#        min_size: 1
-#        max_size: 10
-#        desired_capacity: 5
-#        vpc_zone_identifier: [ "{{ subnet_info1.subnets[0].id }}", "{{ subnet_info11.subnets[0].id }}" ]
-#        tags:
-#          - environment: production
-#            propagate_at_launch: false
+#    - name: Gather information about a particular ELB
+#      community.aws.ec2_elb_info:
+#        names: VPCLCL42837-FIRST-ALB
+#      register: elb_info
+#    - debug: { var: elb_info }
+    - name: Example autoscaling group creation with a launch template
+      amazon.aws.autoscaling_group:
+        name: Deploy-scale-config-grp
+        load_balancers: [ "VPCLCL42837-FIRST-ALB" ]
+        availability_zones: [ 'us-west-2a', 'us-west-2b' ]
+        launch_template:
+          version: '1'
+          launch_template_name: "{{ temp_info.vdersions[0].launch_template_name }}"
+          launch_template_id: "{{ temp_info.vdersions[0].launch_template_id }}"
+        min_size: 2
+        max_size: 3
+        desired_capacity: 2
+        vpc_zone_identifier: [ "{{ subnet_info1.subnets[0].id }}", "{{ subnet_info11.subnets[0].id }}" ]
