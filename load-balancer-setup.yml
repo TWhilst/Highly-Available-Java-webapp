@@ -46,7 +46,7 @@
     - name: Create The Load Balancer
       amazon.aws.elb_application_lb:
         name: VPCLCL42837_FIRST_ALB
-        security_groups: "{{ sg_info.security_groups[0].group_id}}"
+        security_groups: "{{ sg_info.group_id}}"
         subnets:
           - "{{ subnet_info1.subnets[0].id}}"
           - "{{ subnet_info11.subnets[0].id}}"
