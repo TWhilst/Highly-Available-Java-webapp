@@ -24,7 +24,7 @@
     - name: Get the security group info for the Public Subnet
       amazon.aws.ec2_group_info:
         filters:
-          group-name: VPCLCL42837_FIRST_GRP
+          group-name: VPCLCL42837_FIRST_GRP_SSHTOM
           vpc-id: "{{ ec2_info.instances[0].vpc_id}}"
       register: SG_info
     - name: Create an ec2 launch template
