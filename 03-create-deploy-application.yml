@@ -42,6 +42,7 @@
         key_name: toche-key
         instance_type: t2.micro
         image_id: ami-07b0c09aab6e66ee9
+        state: running
 #        network:
 #          assign_public_ip: true
     - name: Create EC2 instance for the Deploy Server in AZ2
@@ -52,5 +53,6 @@
         key_name: toche-key
         instance_type: t2.micro
         image_id: ami-07b0c09aab6e66ee9
+        state: running
 #        network:
 #          assign_public_ip: true
