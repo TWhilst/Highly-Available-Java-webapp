@@ -18,7 +18,7 @@
     - name: Check if AMI with base name exists
       amazon.aws.ec2_ami_info:
         filters:
-          name: DeployJavaLinuxAmi1
+          name: DeployJavaLinuxAmi
       register: existing_amis
     - debug: { var: existing_amis }
     - name: Get the security group info for the Public Subnet
