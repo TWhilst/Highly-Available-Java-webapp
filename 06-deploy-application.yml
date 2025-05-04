@@ -47,13 +47,7 @@
         
         
         
-        sudo yum -y install java-1.8* wget
-        sudo wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
-        sudo tar xvf apache-tomcat-7.0.94.tar.gz
-        cd apache-tomcat-7.0.94
-        cd bin
-        sudo ./startup.sh
-        sudo aws s3 cp s3://prjwarfilebck001/WebAppCal-0.0.6.war /home/ec2-user/apache-tomcat-7.0.94/webapps
+
 
         
     
