@@ -65,7 +65,6 @@
     - name: Example autoscaling group creation with a launch template
       amazon.aws.autoscaling_group:
         name: Deploy-scale-config-grp
-        image_id:
         target_group_arns: "{{ tg_info.target_group_arn }}"
         availability_zones: [ 'us-west-2a', 'us-west-2b' ]
         launch_template:
