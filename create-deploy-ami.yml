@@ -18,7 +18,7 @@
     - name: Check if AMI with base name exists
       amazon.aws.ec2_ami_info:
         filters:
-          name: DeployJavaLinuxAmi
+          name: DeployJavaLinuxAmi1
       register: existing_amis
     - debug: { var: existing_amis }
     - name: Get the security group info for the Public Subnet
@@ -29,7 +29,7 @@
       register: SG_info
     - name: Create an ec2 launch template
       amazon.aws.ec2_launch_template:
-        name: "Deploy-scale-config"
+        name: "Deploy-scale-config1"
         security_group_ids: "{{ SG_info.security_groups[0].group_id}}"
         image_id: "{{ existing_amis.images[0].image_id }}"
         key_name: toche-key
