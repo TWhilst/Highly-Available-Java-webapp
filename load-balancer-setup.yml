@@ -38,7 +38,7 @@
       community.aws.elb_target_group:
         name: VPCLCL42837-FIRST-ALB-TG
         protocol: http
-        port: 80
+        port: 8080
         vpc_id: "{{ vpc_info.vpcs[0].id}}"
         state: present
       register: tg_info
