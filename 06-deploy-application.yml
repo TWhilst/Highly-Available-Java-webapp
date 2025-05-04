@@ -1,6 +1,6 @@
 ---
 - name: Setup Apache Tomcat
-  hosts: deploy
+  hosts: deployServer3
   become: true
   vars:
     packages:
